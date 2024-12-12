@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard.php");
+    header("Location: ./public/dashboard.php");
     exit();
 }
 ?>
@@ -25,8 +25,8 @@ if (isset($_SESSION['user_id'])) {
                             Gérez vos dépenses de manière simple et efficace.
                         </p>
                         <div class="mt-4">
-                            <a href="connexion.php" class="btn btn-primary btn-lg me-3 w-100 mb-3">Se connecter</a>
-                            <a href="inscription.php" class="btn btn-outline-primary btn-lg w-100">S'inscrire</a>
+                            <a href="./public/connexion.php" class="btn btn-primary btn-lg me-3 w-100 mb-3">Se connecter</a>
+                            <a href="./public/inscription.php" class="btn btn-outline-primary btn-lg w-100">S'inscrire</a>
                         </div>
                     </div>
                 </div>
