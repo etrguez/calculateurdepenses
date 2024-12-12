@@ -68,8 +68,7 @@
             echo "<div class='alert alert-danger mt-3 text-center'>Utilisateur non trouvé.</div>";
         }
 
-        $stmt->close();
-        $conn->close();
+       
     }
     ?>
     <script src="../script/script.js"></script>

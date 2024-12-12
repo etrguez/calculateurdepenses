@@ -60,8 +60,6 @@
             echo "<div class='alert alert-danger mt-3 text-center'>Erreur : " . $stmt->error . "</div>";
         }
 
-        $stmt->close();
-        $conn->close();
     }
     ?>
 
