@@ -1,12 +1,25 @@
 <?php
-$servername = "localhost";
-$username = "root"; 
-$password = ""; 
-$dbname = "expenses_db";
+if (getenv('JAWSDB_URL') !== false) {
+    $url = getenv('JAWSDB_URL');
+    $dbparts = parse_url($url);
+    $hostname = $dbparts['host'];
+    $username = $dbparts['user'];
+    $password = $dbparts['pass'];
+    $database = ltrim($dbparts['path'], '/');
+} else {
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Échec de la connexion : " . $conn->connect_error);
+    $hostname = 'localhost';
+    $username = 'root';
+    $password = '';
+    $database = 'arcadia';
+    $port = 3306;
 }
-?>
+
+try {
+    
+    $bdd = new PDO("mysql:host=$hostname;port=$port;dbname=$database;charset=utf8", $username, $password);
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "";
+} catch (PDOException $e) {
+    die('Erreur de connexion : ' . $e->getMessage());
+}
