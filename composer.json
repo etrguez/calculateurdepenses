@@ -1,0 +1,7 @@
+{
+    "name": "calculateur-depenses",
+    "description": "Application de calculateur de dépenses",
+    "require": {
+        "php": "^8.0"
+    }
+}
