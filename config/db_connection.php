@@ -6,8 +6,8 @@ $databaseUrl = "mysql://l9kyt5ogqri97pep:ar34291hup64ow84@sabaik6fx8he7pua.chr7p
 $parsedUrl = parse_url($databaseUrl);
 
 
-$servername = $parsedUrl['host']; +
-$username = $parsedUrl['user'];  +
+$servername = $parsedUrl['host']; 
+$username = $parsedUrl['user'];  
 $password = $parsedUrl['pass']; 
 $dbname = ltrim($parsedUrl['path'], '/'); 
 
