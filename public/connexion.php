@@ -62,13 +62,11 @@
                 $_SESSION['email'] = $user['email'];
                 header("Location: dashboard.php");
             } else {
-                echo "<div class='alert alert-danger mt-3 text-center'>Mot de passe incorrect.</div>";
+                echo "<div class='alert alert-danger mt-3 text-center'>Utilisateur non trouvé ou mot de passe incorrect.</div>";
             }
         } else {
-            echo "<div class='alert alert-danger mt-3 text-center'>Utilisateur non trouvé.</div>";
+            echo "<div class='alert alert-danger mt-3 text-center'>Utilisateur non trouvé ou mot de passe incorrect.</div>";
         }
-
-       
     }
     ?>
     <script src="../script/script.js"></script>
