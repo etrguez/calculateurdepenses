@@ -1,6 +1,0 @@
-# Local uniquement : docker compose -f docker-compose.yml -f docker-compose.dev.yml up
-
-services:
-  web:
-    ports:
-      - "8080:80"

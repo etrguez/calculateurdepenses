@@ -1,9 +1,9 @@
 # =============================================
 # DOCKERFILE - CALCULATEUR DE DÉPENSES
-# PHP 8.2 FPM + MariaDB/MySQL (mysqli)
+# PHP 8.2 Apache — Coolify gère les ports via Traefik
 # =============================================
 
-FROM php:8.2-fpm
+FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -16,18 +16,21 @@ RUN docker-php-ext-install -j$(nproc) \
     opcache \
     zip
 
+RUN a2enmod rewrite headers expires deflate
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /app
+WORKDIR /var/www/html
 
 COPY . .
 
+COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-RUN chown -R www-data:www-data /app
+RUN chown -R www-data:www-data /var/www/html
 
-EXPOSE 9000
+EXPOSE 80
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["php-fpm"]
+CMD ["apache2-foreground"]
