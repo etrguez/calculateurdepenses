@@ -1,0 +1,12 @@
+# Overrides locaux — docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  app:
+    env_file:
+      - .env.example
+    environment:
+      - ENVIRONMENT=development
+
+  web:
+    ports:
+      - "8080:80"
