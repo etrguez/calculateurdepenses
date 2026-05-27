@@ -1,14 +1,7 @@
 {
-    "name": "calculateur/depenses", 
+    "name": "calculateur/depenses",
     "description": "Calculateur de dépenses",
     "require": {
-      "php": "^8.0",
-      "mongodb/mongodb": "^1.9"
-    },
-    "autoload": {
-      "psr-4": {
-        "App\\": "src/"
-      }
+        "php": "^8.0"
     }
-  }
-  
+}

@@ -1,21 +1,15 @@
 <?php
 
-$databaseUrl = "mysql://l9kyt5ogqri97pep:ar34291hup64ow84@sabaik6fx8he7pua.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/pggjuyeivb031m9o";
+require_once __DIR__ . '/env.php';
 
+$db_host = getenv('DB_HOST') ?: 'localhost';
+$db_port = (int)(getenv('DB_PORT') ?: '3306');
+$db_name = getenv('DB_NAME') ?: 'expenses_db';
+$db_user = getenv('DB_USER') ?: 'root';
+$db_pass = getenv('DB_PASSWORD') ?: '';
 
-$parsedUrl = parse_url($databaseUrl);
-
-
-$servername = $parsedUrl['host']; 
-$username = $parsedUrl['user'];  
-$password = $parsedUrl['pass']; 
-$dbname = ltrim($parsedUrl['path'], '/'); 
-
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name, $db_port);
 
 if ($conn->connect_error) {
-    die("Échec de la connexion : " . $conn->connect_error);
+    die('Échec de la connexion : ' . $conn->connect_error);
 }
-?>

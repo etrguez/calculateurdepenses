@@ -1,0 +1,32 @@
+# =============================================
+# DOCKER-COMPOSE - CALCULATEUR DE DÉPENSES
+# Nginx + PHP-FPM (MariaDB externe / mutualisée)
+# =============================================
+
+services:
+  app:
+    build: .
+    container_name: calculateurdepenses-app
+    volumes:
+      - .:/app
+      - vendor_data:/app/vendor
+    env_file:
+      - .env.example
+    environment:
+      - ENVIRONMENT=development
+    restart: unless-stopped
+
+  web:
+    image: nginx:1.26-alpine
+    container_name: calculateurdepenses-web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/app
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+    restart: unless-stopped
+
+volumes:
+  vendor_data:
